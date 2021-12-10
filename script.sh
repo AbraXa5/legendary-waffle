@@ -526,7 +526,6 @@ install_wesng(){
 
 
 # pspy - unprivileged Linux process snooping
-## copy from the essentials
 
 # shodan-cli
 install_ciphey()
@@ -692,7 +691,7 @@ install_feroxbuster()
 
 # add the audio stego tool -> check obsidian
 
-# Cheatsheets
+###### Cheatsheets
 
 # Navi -> Cheatsheet 
 install_navi()
@@ -713,6 +712,7 @@ install_navi()
 }
 
 # curl cheat.sh -> includes tldr
+## add cheat.sh to alias
 # tldr
 install_tldr()
 {
@@ -728,7 +728,7 @@ install_tldr()
 
 
 ##########################################################################################################
-# Scripts
+# Scripts and wordlists
 ##########################################################################################################
 
 # LinEnum
@@ -811,10 +811,11 @@ install_seclists()
 		lunderline "SecLists Installed"
 	else
 		lecho "Installing Seclists"
-		cd /temp
-		git clone https://github.com/danielmiessler/SecLists.git
-		cp -R SecLists /usr/share/wordlists/
+		#cd /temp
+		#git clone https://github.com/danielmiessler/SecLists.git
+		#cp -R SecLists /usr/share/wordlists/
 		#add alias seclists="cd /usr/share/SecLists"
+		sudo apt install seclists
 		lfinish "Seclistst Installed"
 	fi
 }
@@ -827,18 +828,18 @@ install_dirblist()
 	dir=/usr/share/wordlists/dirb
 	if [ -d "$dir" ]
 	then
-		lunderline "DirbList Present"
+		lunderline "Dirb wordList Present"
 	else
-		lecho "Installing Dirblist"
+		lecho "Installing Dirb  wordList"
 		cd /temp
 		git clone https://github.com/v0re/dirb.git
 		cd dirb
 		cp -R wordlists /usr/share/wordlists/dirb
-		lfinish "DirbList Installed"
+		lfinish "Dirb worlistList Installed"
 	fi
 }
 # add my gCloud cracking hashes python notebook
-
+# add the rsa key cracking python notebook
 
 ##########################################################################################################
 # Virtual Box stuff
@@ -846,7 +847,6 @@ install_dirblist()
 
 # add guest additions -> headers and such
 ## -> find something in other scripts
-
 # setup perms for sharedFolder -> add user to vboxsf
 
 
