@@ -16,11 +16,9 @@ Last Modified:
 ##make a temp dir as working dir
 ##add script lock
 
-##########################################################################################################
-##########################################################################################################
+
 ##########################################################################################################
 # Initial Setup
-##########################################################################################################
 ##########################################################################################################
 
 
@@ -112,8 +110,8 @@ EOF
 }
 
 
-##########################################################################################################
-##########################################################################################################
+
+
 ##########################################################################################################
 # Functions actual
 ##########################################################################################################
@@ -515,7 +513,7 @@ install_wesng(){
 	dir=/opt/wesng
 	if [ -d "$dir" ]
 	then
-		lunderline "$dir exists -> so Win ExploitSuggestor alredy installed "
+		lunderline "$dir exists -> Win ExploitSuggestor alredy installed "
 	else
 		lecho "Installing WES-NG"
 		cd /opt
@@ -528,7 +526,7 @@ install_wesng(){
 # pspy - unprivileged Linux process snooping
 
 # shodan-cli
-install_ciphey()
+install_shodan_cli()
 {
 	if ! [ -x "$(command -v shodan)" ]
 	then
@@ -560,7 +558,7 @@ install_gospider()
 
 # Sublister
 ##
-install_hashid()
+install_sublist3r()
 {
 	if ! [ -x "$(command -v sublist3r)" ]
 	then
@@ -780,12 +778,14 @@ install_enum4linux_ng()
 	fi
 }
 
-# Add linux msart enumeration
+# Add linux msart enumeration -> same as above but better looking output
 ## https://github.com/diego-treitos/linux-smart-enumeration.git
 
 
 
 # hash-identifier python script
+## copy from the notebook
+
 
 # install wordlistctl
 install_wordlistctl()
@@ -1753,7 +1753,56 @@ main()
 	script_init "$@"
 
 	echo "Run as sudo"
+
+	#essential
+	update_everything
 	install_essentials
+	install_pip
+	install_pip3
+	install_pipx
+	install_go
+	install_docker
+	install_terminator
+
+
+	#Tools
+	install_ffuf
+	install_dirsearch
+	install_gobuster
+	install_gtfoblookup
+	install_rsg
+	install_gau
+	#install_autorecon_dependancies
+	#install_autorecon
+	install_sth
+	#install_nth
+	install_haiti
+	install_hashid
+	install_hashcat
+	install_jtr
+	install_ciphey
+	install_wesng
+	install_shodan_cli
+	#install_gospider
+	install_sublist3r
+	install_evil-winrm
+
+
+
+
+	#Scripts
+
+
+
+	#Docker images
+
+	#Apps
+	install_sublime
+	install_brave
+
+
+
+
 	# add something for flags etc
 
 
