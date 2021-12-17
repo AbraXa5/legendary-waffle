@@ -3,9 +3,9 @@
 
 
 ##########################################################################################################
-Author: Abraxas
-Created: 09.10.2021 0319
-Last Modified: 
+#Author: Abraxas
+#Created: 09.10.2021 0319
+#Last Modified: 
 ##########################################################################################################
 
 #bash -n script.sh 		# dry run for syntax
@@ -309,6 +309,7 @@ install_dirsearch()
 		lfinish "DirSearch installed"
 	else
 		lunderline "Dirsearch already exists"
+	fi	
 }
 
 # Gobuster -> non recursive
@@ -322,6 +323,7 @@ install_gobuster()
 		lfinish "Gobuster Installed"
 	else
 		lunderline "Gobuster already exists"
+	fi
 
 }
 
