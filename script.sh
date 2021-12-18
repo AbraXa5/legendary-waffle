@@ -256,8 +256,8 @@ install_pipx()
 		pipx run cowsay "PIPX is Awesome!!!"
 
 		#need to find a proper fix for this
-		pipx install cowsay
-		sudo -u "$SUDO_USER" pipx install cowsay
+		#pipx install cowsay
+		#sudo -u "$SUDO_USER" pipx install cowsay
 
 		lfinish "Pipx Installed"
 
@@ -306,9 +306,10 @@ install_ffuf()
 }
 
 # Dirsearch -> recursive
+# test -> sudo -u "$SUDO_USER" pipx list | grep
 install_dirsearch()
 {
-	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep dirsearch)' ]
+	if ! [ -x "$(command -v dirsearch)" ]
 	then
 		lecho "Installing dirsearch"
 		sudo -u $SUDO_USER pipx install dirsearch
@@ -410,7 +411,7 @@ install_autorecon_dependancies()
 # search-that-hash
 install_sth()
 {
-	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep sth)' ]
+	if ! [ -x "$(command sth)" ]
 	then
 		lecho "Installing Search-that-hash"
 		sudo -u $SUDO_USER pipx install search-that-hash
@@ -423,7 +424,7 @@ install_sth()
 # name-that-hash
 install_nth()
 {
-	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep nth)' ]
+	if ! [ -x "$(command -v nth)" ]
 	then
 		lecho "Installing Search-that-hash"
 		sudo -u $SUDO_USER pipx install namne-that-hash
@@ -506,7 +507,7 @@ install_jtr()
 # ciphey
 install_ciphey()
 {
-	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep ciphey)' ]
+	if ! [ -x "$(command -v ciphey)" ]
 	then
 		lecho "Installing ciphey"
 		sudo -u $SUDO_USER pipx install ciphey
@@ -536,7 +537,7 @@ install_wesng(){
 # shodan-cli
 install_shodan_cli()
 {
-	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep shodan)' ]
+	if ! [-x "$( command -v shodan)" ]
 	then
 		lecho "Installing Shodan CLI"
 		sudo -u $SUDO_USER pipx install shodan
@@ -602,7 +603,7 @@ install_evil-winrm()
 # stegoVeritas
 install_stegoVeritas()
 {
-	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep -i stegoveritas)' ]
+	if ! [ -x "$(command -v stegoveritas)" ]
 	then
 		lecho "SetgoVeritas hash-id"
 		sudo -u $SUDO_USER pipx install stegoveritas
