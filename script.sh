@@ -153,7 +153,7 @@ update_everything()
 # basic essentials
 install_essentials()
 {
-	apt install apt-transport-https curl
+	apt install apt-transport-https curl -y 
 	#apt install dkms build-essential linux-headers-amd64 -y
 	lfinish "Done with basic essentials"
 }
@@ -249,10 +249,16 @@ install_pipx()
 	then
 		lecho "Installing pipx"
 		pip3 install pipx
-		apt install python3-venv
+		apt install python3-venv -y 
 		pipx ensurepath
 		source $HOME/.bashrc
-		pipx run cowsay
+		source /home/$SUDO_USER/.bashrc
+		pipx run cowsay "PIPX is Awesome!!!"
+
+		#need to find a proper fix for this
+		pipx install cowsay
+		sudo -u "$SUDO_USER" pipx install cowsay
+
 		lfinish "Pipx Installed"
 
 	else
@@ -286,13 +292,13 @@ install_ffuf()
 	then
 		lecho "Installing FFuf"
 		cd /opt
-		mkdir ffuf
-		go get -u github.com/ffuf/ffuf
-		#git clone https://github.com/ffuf/ffuf.git >/dev/null 2>/tmp/error_log.out
-		#cd ffuf
-		#go get
-		#go build 1> /dev/null
-		#ln -sf /opt/ffuf/ffuf /usr/local/bin/ffuf
+		#mkdir ffuf #test and comment this 
+		#go get -u github.com/ffuf/ffuf
+		git clone https://github.com/ffuf/ffuf.git >/dev/null 2>/tmp/error_log.out
+		cd ffuf
+		go get
+		go build 1> /dev/null
+		ln -sf /opt/ffuf/ffuf /usr/local/bin/ffuf
 		lfinish "Fluff Installed"
 	else
 		lunderline "Ffuf already installed"
@@ -302,10 +308,10 @@ install_ffuf()
 # Dirsearch -> recursive
 install_dirsearch()
 {
-	if ! [ -x "$(command -v dirsearch)" ]
+	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep dirsearch)' ]
 	then
 		lecho "Installing dirsearch"
-		pipx install dirsearch
+		sudo -u $SUDO_USER pipx install dirsearch
 		lfinish "DirSearch installed"
 	else
 		lunderline "Dirsearch already exists"
@@ -342,6 +348,7 @@ install_gtfoblookup()
 		cd GTFOBLookup
 		pip3 install -r requirements.txt >/dev/null 2>/tmp/error_log.out
 		python3 gtfoblookup.py update >/dev/null 2>/tmp/error_log.out
+		#add sym link to /bin
 		lfinish "GTFO Installed"
 	fi
 }
@@ -389,7 +396,7 @@ install_autorecon()
 	else
 		cd /opt/
 		install_autorecon_dependancies
-		pipx install git+https://github.com/Tib3rius/AutoRecon.git
+		sudo -u $SUDO_USER pipx install git+https://github.com/Tib3rius/AutoRecon.git
 		lfinish "AutoRecon installed with pipx"
 	
 	fi
@@ -403,10 +410,10 @@ install_autorecon_dependancies()
 # search-that-hash
 install_sth()
 {
-	if ! [ -x "$(command -v sth)" ]
+	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep sth)' ]
 	then
 		lecho "Installing Search-that-hash"
-		pipx install search-that-hash
+		sudo -u $SUDO_USER pipx install search-that-hash
 		lfinish "STH Installed"
 	else
 		lunderline "STH already exists"
@@ -416,10 +423,10 @@ install_sth()
 # name-that-hash
 install_nth()
 {
-	if ! [ -x "$(command -v nth)" ]
+	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep nth)' ]
 	then
 		lecho "Installing Search-that-hash"
-		pipx install namne-that-hash
+		sudo -u $SUDO_USER pipx install namne-that-hash
 		lfinish "NTH Installed"
 	else
 		lunderline "NTH already exists"
@@ -499,10 +506,10 @@ install_jtr()
 # ciphey
 install_ciphey()
 {
-	if ! [ -x "$(command -v ciphey)" ]
+	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep ciphey)' ]
 	then
 		lecho "Installing ciphey"
-		pipx install ciphey
+		sudo -u $SUDO_USER pipx install ciphey
 		lfinish "STH Installed"
 	else
 		lunderline "STH already exists"
@@ -529,10 +536,10 @@ install_wesng(){
 # shodan-cli
 install_shodan_cli()
 {
-	if ! [ -x "$(command -v shodan)" ]
+	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep shodan)' ]
 	then
 		lecho "Installing Shodan CLI"
-		pipx install shodan
+		sudo -u $SUDO_USER pipx install shodan
 		lfinish "Shodan CLI Installed"
 	else
 		lunderline "Shodan already exists"
@@ -595,10 +602,10 @@ install_evil-winrm()
 # stegoVeritas
 install_stegoVeritas()
 {
-	if ! [ -x "$(command -v hashid)" ]
+	if  [ '$(sudo -u "$SUDO_USER" pipx list | grep -i stegoveritas)' ]
 	then
 		lecho "SetgoVeritas hash-id"
-		pipx install stegoveritas
+		sudo -u $SUDO_USER pipx install stegoveritas
 		stegoveritas_install_deps
 		lfinish "SetgoVeritass and dependancies Installed"
 	else
