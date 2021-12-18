@@ -312,7 +312,7 @@ install_dirsearch()
 	if ! [ -x "$(command -v dirsearch)" ]
 	then
 		lecho "Installing dirsearch"
-		sudo -u $SUDO_USER pipx install dirsearch
+		sudo -u $SUDO_USER pipx install dirsearch --force
 		lfinish "DirSearch installed"
 	else
 		lunderline "Dirsearch already exists"
@@ -414,7 +414,7 @@ install_sth()
 	if ! [ -x "$(command sth)" ]
 	then
 		lecho "Installing Search-that-hash"
-		sudo -u $SUDO_USER pipx install search-that-hash
+		sudo -u $SUDO_USER pipx install search-that-hash --force
 		lfinish "STH Installed"
 	else
 		lunderline "STH already exists"
@@ -427,7 +427,7 @@ install_nth()
 	if ! [ -x "$(command -v nth)" ]
 	then
 		lecho "Installing Search-that-hash"
-		sudo -u $SUDO_USER pipx install namne-that-hash
+		sudo -u $SUDO_USER pipx install namne-that-hash --force
 		lfinish "NTH Installed"
 	else
 		lunderline "NTH already exists"
@@ -510,7 +510,7 @@ install_ciphey()
 	if ! [ -x "$(command -v ciphey)" ]
 	then
 		lecho "Installing ciphey"
-		sudo -u $SUDO_USER pipx install ciphey
+		sudo -u $SUDO_USER pipx install ciphey --force
 		lfinish "STH Installed"
 	else
 		lunderline "STH already exists"
@@ -540,7 +540,7 @@ install_shodan_cli()
 	if ! [-x "$( command -v shodan)" ]
 	then
 		lecho "Installing Shodan CLI"
-		sudo -u $SUDO_USER pipx install shodan
+		sudo -u $SUDO_USER pipx install shodan --force
 		lfinish "Shodan CLI Installed"
 	else
 		lunderline "Shodan already exists"
@@ -606,7 +606,7 @@ install_stegoVeritas()
 	if ! [ -x "$(command -v stegoveritas)" ]
 	then
 		lecho "SetgoVeritas hash-id"
-		sudo -u $SUDO_USER pipx install stegoveritas
+		sudo -u $SUDO_USER pipx install stegoveritas --force
 		stegoveritas_install_deps
 		lfinish "SetgoVeritass and dependancies Installed"
 	else
@@ -903,7 +903,7 @@ main()
 	#install_gospider
 	install_sublist3r
 	install_evil-winrm
-	install_stegoVeritas
+	#install_stegoVeritas
 	install_grimmie_autoenum
 	install_searchploit
 	feroxbuster
