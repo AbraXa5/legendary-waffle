@@ -38,7 +38,7 @@ script_init()
   script_name="$(basename "$script_path")"
   readonly script_dir script_name
   # error_log
-  touch /temp/error_log.out
+  touch /tmp/error_log.out
 }
 
 # Logging
@@ -206,7 +206,7 @@ install_go()
 	if ! [ -x "$(command -v go)" ]
 	then
   	lecho "Installing golang"
-    apt install golang -y >/dev/null 2>/temp/error_log.out 
+    apt install golang -y >/dev/null 2>/tmp/error_log.out 
 	else
     lunderline "Go already installed"
 	fi
@@ -218,8 +218,8 @@ install_pip()
 	if ! [ -x "$(command -v pip)" ]
 	then
 		lecho "Installing pip"
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py >/dev/null 2>/temp/error_log.out
-    python get-pip.py >/dev/null 2>/temp/error_log.out
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py >/dev/null 2>/tmp/error_log.out
+    python get-pip.py >/dev/null 2>/tmp/error_log.out
     rm get-pip.py
     lfinish "pip installed"
   else
@@ -233,7 +233,7 @@ install_pip3()
 	if ! [ -x "$(command -v pip3)" ]
 	then
 		lecho "Installing pip3"
-		apt install python3-pip -y >/dev/null 2>/temp/error_log.out
+		apt install python3-pip -y >/dev/null 2>/tmp/error_log.out
 		lfinish "PIP23 Installed"
 	else
 		lunderline "PI3 already installed"
@@ -288,7 +288,7 @@ install_ffuf()
 		cd /opt
 		mkdir ffuf
 		go get -u github.com/ffuf/ffuf
-		#git clone https://github.com/ffuf/ffuf.git >/dev/null 2>/temp/error_log.out
+		#git clone https://github.com/ffuf/ffuf.git >/dev/null 2>/tmp/error_log.out
 		#cd ffuf
 		#go get
 		#go build 1> /dev/null
@@ -340,8 +340,8 @@ install_gtfoblookup()
 		cd /opt/
 		git clone https://github.com/nccgroup/GTFOBLookup.git
 		cd GTFOBLookup
-		pip3 install -r requirements.txt >/dev/null 2>/temp/error_log.out
-		python3 gtfoblookup.py update >/dev/null 2>/temp/error_log.out
+		pip3 install -r requirements.txt >/dev/null 2>/tmp/error_log.out
+		python3 gtfoblookup.py update >/dev/null 2>/tmp/error_log.out
 		lfinish "GTFO Installed"
 	fi
 }
@@ -463,8 +463,8 @@ install_hashcat()
 		apt-get -qq install cmake build-essential -y 
 		apt-get -qq install checkinstall git -y
 		cd /opt 
-		git clone https://github.com/hashcat/hashcat.git >/dev/null 2>/temp/error_log.out
-		cd hashcat && git submodule update --init && make && make install >/dev/null 2>/temp/error_log.out
+		git clone https://github.com/hashcat/hashcat.git >/dev/null 2>/tmp/error_log.out
+		cd hashcat && git submodule update --init && make && make install >/dev/null 2>/tmp/error_log.out
 		hashcat --version
 
 		lfinish "Hashcat Installed"
@@ -698,8 +698,8 @@ install_navi()
 		echo $grn"Installing NAVI and FZF..."$white
 		cd /opt/
 		# Installing Dependency FZF
-		apt install fzf >/dev/null 2>/temp/error_log.out
-		git clone https://github.com/denisidoro/navi.git >/dev/null 2>/temp/error_log.out
+		apt install fzf >/dev/null 2>/tmp/error_log.out
+		git clone https://github.com/denisidoro/navi.git >/dev/null 2>/tmp/error_log.out
 		cd navi
 		bash <(curl -sL https://raw.githubusercontent.com/denisidoro/navi/master/scripts/install)
 	fi
@@ -807,7 +807,7 @@ install_seclists()
 		lunderline "SecLists Installed"
 	else
 		lecho "Installing Seclists"
-		#cd /temp
+		#cd /tmp
 		#git clone https://github.com/danielmiessler/SecLists.git
 		#cp -R SecLists /usr/share/wordlists/
 		#add alias seclists="cd /usr/share/SecLists"
@@ -827,7 +827,7 @@ install_dirblist()
 		lunderline "Dirb wordList Present"
 	else
 		lecho "Installing Dirb  wordList"
-		cd /temp
+		cd /tmp
 		git clone https://github.com/v0re/dirb.git
 		cd dirb
 		cp -R wordlists /usr/share/wordlists/dirb
