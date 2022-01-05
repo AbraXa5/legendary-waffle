@@ -159,15 +159,7 @@ install_essentials()
 }
 
 # Sublime Text3
-install_sublime()
-{
-	lecho "Installing Sublime"
-	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
-	echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-	apt update
-	apt install sublime-text
-	lfinish "Installed Sublime-text"
-}
+
 
 # Brave
 install_brave()
@@ -324,7 +316,7 @@ install_gobuster()
 {
 	if ! [ -x "$(command -v gobuster)" ]
 	then
-		lecho "Installing dirsearch"
+		lecho "Installing GoBuster"
 		cd /opt
 		go install github.com/OJ/gobuster/v3@latest
 		lfinish "Gobuster Installed"
@@ -647,10 +639,10 @@ install_grimmie_autoenum()
 
 # Add those CMS wordlists from the THM room -> obsidian -> https://github.com/ZephrFish/Wordlists
 
+	
+# Add updog pipx install updog
 
-# Add updog
-
-# add the advanced netcat version
+# add the advanced netcat version pipx install pwncat-cs
 
 # add my edited nmapautomater
 
